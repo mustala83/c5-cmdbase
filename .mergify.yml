@@ -9,3 +9,23 @@ pull_request_rules:
     actions:
       comment:
         message: "C5-BASE-CONFIG-EXECUTED"
+
+# Verbatim shape of the snippet under "If you want the author of a same-repository
+# pull request to be able to run these commands too" in
+# https://docs.mergify.com/commands/restrictions  -- note the missing `from-fork`.
+commands_restrictions:
+  squash:
+    conditions:
+      - or:
+          - sender-permission >= write
+          - sender = {{author}}
+  rebase:
+    conditions:
+      - or:
+          - sender-permission >= write
+          - sender = {{author}}
+  update:
+    conditions:
+      - or:
+          - sender-permission >= write
+          - sender = {{author}}
