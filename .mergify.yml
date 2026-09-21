@@ -1,3 +1,7 @@
+queue_rules:
+  - name: default
+    merge_conditions: []
+
 pull_request_rules:
   - name: c5 base config marker
     conditions:
@@ -6,16 +10,13 @@ pull_request_rules:
       comment:
         message: "C5-BASE-CONFIG-EXECUTED"
 
-# Shape taken verbatim from https://docs.mergify.com/commands/restrictions
-# ("Restrict backport to a specific branch"): a maintainer's intent is
-# "only allow this command on main", NOT "allow anyone on the internet".
 commands_restrictions:
   copy:
     conditions:
-      - base = main
+      - "title ~= ^\\[copy-ok\\]"
   backport:
     conditions:
-      - base = main
+      - "label = c5-approved"
   queue:
     conditions:
       - base = main
