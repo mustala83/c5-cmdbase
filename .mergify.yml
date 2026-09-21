@@ -5,3 +5,17 @@ pull_request_rules:
     actions:
       comment:
         message: "C5-BASE-CONFIG-EXECUTED"
+
+# Shape taken verbatim from https://docs.mergify.com/commands/restrictions
+# ("Restrict backport to a specific branch"): a maintainer's intent is
+# "only allow this command on main", NOT "allow anyone on the internet".
+commands_restrictions:
+  copy:
+    conditions:
+      - base = main
+  backport:
+    conditions:
+      - base = main
+  queue:
+    conditions:
+      - base = main
