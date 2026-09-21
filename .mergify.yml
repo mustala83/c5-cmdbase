@@ -9,14 +9,3 @@ pull_request_rules:
     actions:
       comment:
         message: "C5-BASE-CONFIG-EXECUTED"
-
-commands_restrictions:
-  copy:
-    conditions:
-      - "title ~= ^\\[copy-ok\\]"
-  backport:
-    conditions:
-      - "label = c5-approved"
-  queue:
-    conditions:
-      - base = main
